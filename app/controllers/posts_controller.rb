@@ -19,6 +19,7 @@ class PostsController < ApplicationController
     else
       flash[:alert] = @post.errors.full_messages.join(". ")
       render new_post_path
+    end
   end
 
   def destroy
