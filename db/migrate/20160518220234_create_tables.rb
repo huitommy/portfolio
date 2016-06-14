@@ -5,6 +5,7 @@ class CreateTables < ActiveRecord::Migration[5.0]
       t.text :purpose, null: false
       t.text :description, null: false
       t.date :date, null: false
+      t.belongs_to :user, null: false
       t.string :image
       t.timestamps
     end

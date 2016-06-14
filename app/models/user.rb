@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
   validate :validate_username
+  has_many :posts
 
   def validate_username
     if User.where(email: username).exists?
