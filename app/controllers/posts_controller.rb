@@ -12,13 +12,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
       flash[:notice] = "Post created successfully!"
       redirect_to post_path(@post)
     else
       flash[:alert] = @post.errors.full_messages.join(". ")
-      render new_post_path
+      render :new
     end
   end
 
@@ -47,6 +47,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :purpose, :description, :date, :image, :created_at, :updated_at)
+    params.require(:post).permit(:title, :purpose, :description, :date, :image, :created_at, :updated_at, :user_id)
   end
 end
